@@ -1,7 +1,7 @@
 # Trello 
 
 ## Description
-> Example: "This project is a task management app that allows users to create, edit, and track tasks with different statuses."
+>  "This project is a task management app that allows users to create, edit, and track tasks with different statuses."
 
 ## Features
 
