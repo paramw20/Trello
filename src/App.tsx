@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+import Main from './components/Main';
+import { BoardContext } from './context/BoardContext';
+
+
 
 function App() {
+  const boardData = {
+    active:0,
+    boards:[
+      {
+        name:'My Trello Board',
+        bgcolor:'#069',
+        list:[
+          {id:"1",title:"Not Started",items:[{id:"cdrFt",title:"Project Description 1"}]},
+          {id:"2",title:"In Progress",items:[{id:"cdrFv",title:"Project Description 2"}]},
+          {id:"3",title:"Completed",items:[{id:"cdrFb",title:"Project Description 3"}]},
+          {id:"4",title:"Failed",items:[{id:"cdrFf",title:"Project Description 4"}]}
+        ]
+      }
+    ]
+  }
+  const [allboard,setAllBoard] = useState(boardData); 
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+    <Header></Header>
+    <BoardContext.Provider value={{allboard,setAllBoard}}>
+      <div className='content flex'>
+        <Sidebar></Sidebar>
+        <Main></Main>
+      </div>
+    </BoardContext.Provider>
+    </>
+  )
 }
 
-export default App;
+export default App
